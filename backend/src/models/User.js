@@ -27,14 +27,12 @@ const userSchema = new mongoose.Schema(
     { timestamps: true }
 )
 
-userSchema.pre("save", async function(next){
+userSchema.pre("save", async function(){
     //only hash ig password is new or modified
-    if(!this.isModified("password")) return next();
+    if(!this.isModified("password")) return;
 
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
-
-    next();
 })
 
 userSchema.methods.matchPassword = async function (enteredPassword){
