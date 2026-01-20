@@ -1,3 +1,5 @@
+
+/* Test Route to check Protected Middleware ( deleted later ) */
 const express = require("express");
 const router = express.Router();
 const {Protected} = require("../middleware/auth.middleware");
