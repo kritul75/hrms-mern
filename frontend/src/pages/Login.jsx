@@ -1,15 +1,35 @@
 import {useState} from 'react';
 import '../style/login.css';
+import api from '../api/axios';
 
 const Login = () =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
-        // Handle login logic here
-        console.log("Email:", email);
-        console.log("Password:", password);
+        setError('');
+
+        try {
+            //1. call backend login api
+            const response = await api.post('/auth/login', {email, password});
+            //2. extract token from response
+            const { token, user } = response.data;
+
+            //3. store token in localstorage
+            localStorage.setItem('token', token);
+
+            //4. temporary alert
+            alert('Login successful!');
+            console.log('Logged in user:', user);
+            //5. Later redirect to dashboard ( to be implemented )
+        } catch (error) {
+            //6. handle error
+            setError(
+                error.response?.data?.message || 'Login failed. Please try again.'
+            );
+        }
     }
 
     return(
