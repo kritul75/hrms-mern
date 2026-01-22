@@ -2,6 +2,7 @@ import {useState} from 'react';
 import '../style/login.css';
 import api from '../api/axios';
 
+
 const Login = () =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -35,6 +36,7 @@ const Login = () =>{
     return(
         <div className='login-container'>
         <h1 className='login-title'>HR Login</h1>
+        {error && <p className='login-error'>{error}</p>}
         <form className='login-form' onSubmit={handleSubmit}>
             <div>
                 <label className='login-label'>Email:</label><br/>

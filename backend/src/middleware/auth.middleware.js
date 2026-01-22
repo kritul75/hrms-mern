@@ -4,7 +4,7 @@ const User = require("../models/User");
 require("dotenv").config();
 
 exports.Protected = async (req, res, next) => {
-    let token
+    let token;
     try {
         //1. Check authorization header
         if(req.headers["authorization"] && req.headers["authorization"].startsWith("Bearer")){

@@ -14,7 +14,11 @@ body {
 
     background: linear-gradient(135deg, #2b2e4a, #4c4177);
 }
-
+.login-error{
+    text-align: center;
+    width: 100%;
+    color: #df3e3e;
+}
 /* Stronger, brighter, highlighted card */
 .login-container {
     width: 380px;
