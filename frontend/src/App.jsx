@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Routes,Route, Navigate} from 'react-router-dom';
 import Login from './pages/Login.jsx'
+import Employees from './pages/Employees.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
 
 function App() {
@@ -16,6 +17,13 @@ function App() {
         {
           <ProtectedRoute>
             <h1>Dashboard - Protected Content</h1>
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/employees" element=
+        {
+          <ProtectedRoute>
+            <Employees />
           </ProtectedRoute>
         }
       />
