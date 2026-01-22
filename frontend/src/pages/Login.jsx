@@ -1,4 +1,6 @@
 import {useState} from 'react';
+import {useAuth} from '../context/AuthContext.jsx';
+import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import api from '../api/axios';
 
@@ -7,6 +9,8 @@ const Login = () =>{
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const {login} = useAuth();
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -18,13 +22,11 @@ const Login = () =>{
             //2. extract token from response
             const { token, user } = response.data;
 
-            //3. store token in localstorage
-            localStorage.setItem('token', token);
+            //3. call login from context
+            login(token);
+            //5. redirect to dashboard
+            navigate('/dashboard');
 
-            //4. temporary alert
-            alert('Login successful!');
-            console.log('Logged in user:', user);
-            //5. Later redirect to dashboard ( to be implemented )
         } catch (error) {
             //6. handle error
             setError(
