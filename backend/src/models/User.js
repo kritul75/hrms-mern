@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema(
 )
 
 userSchema.pre("save", async function(){
-    //only hash ig password is new or modified
+    //only hash if password is new or modified
     if(!this.isModified("password")) return;
 
     const salt = await bcrypt.genSalt(10);

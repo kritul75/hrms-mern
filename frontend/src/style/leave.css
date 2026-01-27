@@ -1,0 +1,111 @@
+/* Container */
+.leave-list {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+  max-width: 1100px;
+  margin: 32px auto;
+  height: 70vh;
+  padding: 24px;
+  background: #706284c0;
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.leave-table{
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.leave-list h1 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+  color: #0f101096; /* gray-800 */
+  margin: 0 0 20px;
+  letter-spacing: 0.2px;
+}
+
+/* Empty state */
+.leave-list > p {
+  margin: 16px 0 0;
+  color: #6b7280; /* gray-500 */
+  text-align: center;
+}
+
+/* Table wrapper for horizontal scroll on small screens */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.leave-table thead {
+    background: #452380;
+    color: rgba(255, 255, 255, 0.895);
+}
+
+.leave-table th, 
+.leave-table td {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 15px;
+}
+
+.leave-table tbody tr {
+    background-color: #faf8ff;
+    border-bottom: 1px solid #929191;
+}
+.leave-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.leave-table tbody tr:hover {
+    background-color: #ffffff;
+    transition: background 0.2s ease;
+}
+.approve-btn{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.approve-btn:hover{
+    background-color: #45a049;
+}
+.reject-btn{
+    background-color: #f44336; /* Red */
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+.reject-btn:hover{
+    background-color: #da190b;
+}
+.leave-status-Approved {
+    color: #4CAF50; /* Green */
+    font-size: 20px;
+}
+.leave-status-Rejected {
+    color: #f44336; /* Red */
+    font-size: 20px;
+}
+.leave-status-Pending {
+    color: #ff9800; /* Orange */
+    font-size: 20px;
+}

@@ -25,7 +25,7 @@ const Login = () =>{
             //3. call login from context
             login(token);
             //5. redirect to dashboard ( change it later- currently to employees)
-            navigate('/employees');
+            navigate('/leaves');
 
         } catch (error) {
             //6. handle error

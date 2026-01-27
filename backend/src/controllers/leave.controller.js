@@ -47,6 +47,7 @@ exports.updateLeaveStatus = async (req, res) =>{
         await leave.save();
         return res.status(200).json({message: "Leave status updated successfully", leave});
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message: "Server error"})
     }
 }
