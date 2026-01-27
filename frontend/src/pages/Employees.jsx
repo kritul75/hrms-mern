@@ -1,28 +1,44 @@
 import {useEffect , useState} from 'react';
 import api from '../api/axios';
 import '../style/employee.css';
+import EmployeeAddForm from '../components/EmployeeAddForm';
+import EmployeeList from '../components/EmployeeList';
 
 const Employees = () =>{
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(()=>{
-        const fetchEmployees = async () =>{
+    //fetching employees from backend
+    const fetchEmployees = async () =>{
             try {
                 setLoading(true);
                 const res = await api.get('/employees')
-                console.log(res.data.employees);
                 setEmployees(res.data.employees);
             } catch (error) {
-                console.error(error);
                 setError(error);
             } finally {
                 setLoading(false);
             }      
-        }
+    }
+
+    useEffect(()=>{
         fetchEmployees();
     },[])
+
+    //handler to add new employee
+    const handleAddEmployee = async (employeeData) =>{
+        try {
+            const res = await api.post('/employees', employeeData);
+            //update employee list
+            //setEmployees(prevEmployees => [...prevEmployees, res.data.employee]);
+            fetchEmployees();
+            
+        } catch (error) {
+            console.log(error);
+            setError(error);
+        }
+    }
     
     if(loading){
         return <div>Loading...</div>
@@ -31,34 +47,16 @@ const Employees = () =>{
         return <div>Error fetching employees</div>
     }
     return(
-        <div className="employee-container">
-            <h1>Employee List</h1>
-            {employees.length === 0 ? (<p>No employees found.</p>
-            ) : (
-                <table className="employee-table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Department</th>
-                            <th>Role</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {employees.map((emp) => (
-                            <tr key={emp.id}>
-                                <td>{emp.name.toUpperCase()}</td>
-                                <td>{emp.email}</td>
-                                <td>{emp.department.toUpperCase()}</td>
-                                <td>{emp.role.toUpperCase()}</td>
-                                <td style={{color:`${emp.status.toUpperCase()==="ACTIVE" ? "green" : "red"}`}}>{emp.status.toUpperCase()}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            )}
-            
+        <div className="employees-main-container">
+            <div className='employee-form-container'>
+                <h2>employee form</h2>
+                <EmployeeAddForm handleAddEmployee={handleAddEmployee} />
+            </div>
+            <div className="employee-container">
+                <h1>Employee List</h1>
+                
+                <EmployeeList employees={employees} />  
+            </div>
         </div>
     )
 }
