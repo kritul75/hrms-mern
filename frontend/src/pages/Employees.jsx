@@ -3,6 +3,7 @@ import api from '../api/axios';
 import '../style/employee.css';
 import EmployeeAddForm from '../components/EmployeeAddForm';
 import EmployeeList from '../components/EmployeeList';
+import LogoutButton from '../components/LogoutButton';
 
 const Employees = () =>{
     const [employees, setEmployees] = useState([]);
@@ -47,17 +48,22 @@ const Employees = () =>{
         return <div>Error fetching employees</div>
     }
     return(
+
         <div className="employees-main-container">
+            
             <div className='employee-form-container'>
                 <h2>employee form</h2>
                 <EmployeeAddForm handleAddEmployee={handleAddEmployee} />
             </div>
             <div className="employee-container">
                 <h1>Employee List</h1>
+                {/* later move to navbar */}
+                <LogoutButton />
                 
                 <EmployeeList employees={employees} />  
             </div>
         </div>
+
     )
 }
 
