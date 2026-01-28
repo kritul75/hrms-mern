@@ -1,4 +1,4 @@
-const EmployeeList = ({employees}) =>{
+const EmployeeList = ({employees, handleDeleteEmployee, setEditEmployee}) =>{
     return (
         <><h2>Employee List</h2>
         {employees.length === 0 ? (<p>No employees found.</p>
@@ -11,6 +11,7 @@ const EmployeeList = ({employees}) =>{
                             <th>Department</th>
                             <th>Role</th>
                             <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,10 @@ const EmployeeList = ({employees}) =>{
                                 <td>{emp.department.toUpperCase()}</td>
                                 <td>{emp.role.toUpperCase()}</td>
                                 <td style={{color:`${emp.status.toUpperCase()==="ACTIVE" ? "green" : "red"}`}}>{emp.status.toUpperCase()}</td>
+                                <td>
+                                    <button className="btn-edit-emp" onClick={() => setEditEmployee(emp)}>Edit</button>
+                                    
+                                </td>
                             </tr>
                         ))}
                     </tbody>

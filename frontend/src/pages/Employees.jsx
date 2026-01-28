@@ -2,6 +2,7 @@ import {useEffect , useState} from 'react';
 import api from '../api/axios';
 import '../style/employee.css';
 import EmployeeAddForm from '../components/EmployeeAddForm';
+import EmployeeEditForm from '../components/EmployeeEditForm';
 import EmployeeList from '../components/EmployeeList';
 import LogoutButton from '../components/LogoutButton';
 
@@ -9,6 +10,7 @@ const Employees = () =>{
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [editEmployee, setEditEmployee] = useState(null);
 
     //fetching employees from backend
     const fetchEmployees = async () =>{
@@ -26,6 +28,22 @@ const Employees = () =>{
     useEffect(()=>{
         fetchEmployees();
     },[])
+
+    const handleDeleteEmployee = async () =>{
+
+    }
+
+    const handleEditEmployee = async (employeeData) =>{
+        try {
+            const res = await api.patch(`/employees/${employeeData._id}`, employeeData);
+            console.log(employeeData)
+            //update employee list
+            fetchEmployees();
+            setEditEmployee(null);
+        } catch (error) {
+            alert(error.response.data.message);
+        }
+    }
 
     //handler to add new employee
     const handleAddEmployee = async (employeeData) =>{
@@ -52,16 +70,15 @@ const Employees = () =>{
         <div className="employees-main-container">
             
             <div className='employee-form-container'>
-                <h2>employee form</h2>
                 <EmployeeAddForm handleAddEmployee={handleAddEmployee} />
             </div>
             <div className="employee-container">
-                <h1>Employee List</h1>
-                {/* later move to navbar */}
-                <LogoutButton />
-                
-                <EmployeeList employees={employees} />  
+
+                <EmployeeList employees={employees} handleDeleteEmployee={handleDeleteEmployee} setEditEmployee={setEditEmployee} />  
             </div>
+            {editEmployee && (
+                <EmployeeEditForm employee={editEmployee} handleEditEmployee={handleEditEmployee} setEditEmployee={setEditEmployee}/>
+            )}
         </div>
 
     )

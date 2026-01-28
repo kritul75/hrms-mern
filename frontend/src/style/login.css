@@ -12,7 +12,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    background: linear-gradient(135deg, #2b2e4a, #4c4177);
+    background: linear-gradient(135deg, #eaebf7, #cfc5f8);
 }
 .login-error{
     text-align: center;

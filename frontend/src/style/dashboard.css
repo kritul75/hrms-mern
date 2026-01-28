@@ -1,0 +1,28 @@
+.btn{
+    background-color: #9e4caf; /* Green */
+    border: none;
+    width: 150px;
+    height: 120px;
+    color: rgba(255, 255, 255, 0.913);
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+.btn:hover {
+    background-color: #c169d2;
+}
+.material-icons{
+    font-size: 40px;
+    color: aliceblue;
+}
+.dashboard-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
